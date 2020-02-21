@@ -86,7 +86,8 @@ void read(Person * p) {
 
 struct A {
 	char c;
-	int n;
+	int :0;
+	int number:3;
 	char p;
 };
 
