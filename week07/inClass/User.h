@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 class User {
 private:
@@ -23,7 +24,11 @@ public:
     void setUsername(const char * newUsername);
     int getAge() const;
     void setAge(int newAge);
-
+	
+	bool operator<(const User & other);
+	
+	friend std::ostream& operator<<(std::ostream& out, const User& object);
+	
     // get, set
     // rule of 3
     // cin, cout

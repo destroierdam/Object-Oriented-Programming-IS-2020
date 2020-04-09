@@ -55,6 +55,23 @@ const char * User::getUsername() const;
 
 void User::setUsername(const char * newUsername);
 
-int User::getAge() const;
+int User::getAge() const {
+	return this->age;
+}
 
-void User::setAge(int newAge);
+void User::setAge(int newAge) {
+	this->age = newAge;
+}
+
+bool User::operator<(const User & other) {
+	return this->age < other.age;
+}
+
+std::ostream& operator<<(std::ostream& out, const User& object) {
+	out << this->username << '\n' << this->password; // ...
+	return out;
+}
+
+
+
+
