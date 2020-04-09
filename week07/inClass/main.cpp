@@ -9,7 +9,7 @@ bool compare(const User & left, const User & right) {
 }
 
 int main() {
-    User traicho, kircho;
+    User traicho, kircho, pencho;
 	traicho.setAge(15);
 	kircho.setAge(21);
 	
@@ -19,19 +19,19 @@ int main() {
 	
 	traicho < kircho;
 	
-	traicho << cout;
+	// traicho << cout;
 	
 	cout << traicho << kircho;
 	
 	
 	User arrUsers[] = {traicho, kircho, pencho};
-	sort(arrUsers, arrUsers + 2, 
+	sort(arrUsers, arrUsers + 3, 
 		[](const User & left, const User & right) -> bool {
 			return left.getAge() < right.getAge();
 		}
 	);
 	
-	{kircho, traicho, pencho} // kircho < traicho, traicho < pencho
+	// {kircho, traicho, pencho} // kircho < traicho, traicho < pencho
 	
 	
 }

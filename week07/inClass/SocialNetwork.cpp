@@ -10,11 +10,11 @@ void SocialNetwork::copy(const SocialNetwork& other) {
 	}
 }
 
-void destroy() {
+void SocialNetwork::destroy() {
 	delete[] this->users;
 }
 
-void resize() {
+void SocialNetwork::resize() {
 	this->capacity *= 2;
 	User * newBuffer = new User[this->capacity];
 	for(size_t i = 0; i < this->size; i++) {
@@ -49,7 +49,7 @@ SocialNetwork::~SocialNetwork() {
 	this->destroy();
 }
 
-SocialNetwork& addUser(const User & newUser) {
+SocialNetwork& SocialNetwork::addUser(const User & newUser) {
 	if(this->size == this->capacity) {
 		this->resize();
 	}
@@ -59,9 +59,6 @@ SocialNetwork& addUser(const User & newUser) {
 	
 	return *this;
 }
-
-
-
 
 
 

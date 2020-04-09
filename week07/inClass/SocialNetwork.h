@@ -1,4 +1,5 @@
 #pragma once
+#include "User.h"
 	
 class SocialNetwork {
 private:
@@ -13,6 +14,5 @@ public:
 	SocialNetwork& operator=(const SocialNetwork& other);
 	~SocialNetwork();
 	
-	SocialNetwork& addUser(const User & newUser);
-	
+	SocialNetwork& addUser(const User & newUser);	
 };
