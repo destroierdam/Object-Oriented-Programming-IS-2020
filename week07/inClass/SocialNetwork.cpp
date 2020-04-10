@@ -60,6 +60,16 @@ SocialNetwork& SocialNetwork::addUser(const User & newUser) {
 	return *this;
 }
 
+SocialNetwork& SocialNetwork::mutateUsersMatching(
+	std::function<bool(User)> predicate, 
+	std::function<User(User)> mutator) {
+	for(size_t i = 0; i < this->size; i++) {
+		if(predicate(this->users[i])) {
+			this->users[i] = mutator(this->users[i]);
+		}
+	}
+	return *this;
+}
 
 
 

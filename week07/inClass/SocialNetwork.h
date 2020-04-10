@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include "User.h"
 	
 class SocialNetwork {
@@ -14,5 +15,6 @@ public:
 	SocialNetwork& operator=(const SocialNetwork& other);
 	~SocialNetwork();
 	
-	SocialNetwork& addUser(const User & newUser);	
+	SocialNetwork& addUser(const User & newUser);
+	SocialNetwork& mutateUsersMatching(std::function<bool(User)> predicate, std::function<User(User)> mutator);
 };
