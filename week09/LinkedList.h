@@ -59,7 +59,8 @@ void LinkedList<T>::copy(const LinkedList<T>& other) {
 	Node<T>* nodeToBeCopied = other.first;
 
 	this->first = new Node<T>(nodeToBeCopied->data, nullptr);
-
+	nodeToBeCopied = nodeToBeCopied->next;
+	
 	Node<T>* destinationNode = this->first;
 	
 	while (nodeToBeCopied != nullptr) {
