@@ -1,5 +1,6 @@
 #include <iostream>
 #include <functional>
+#include <stdexcept>
 
 void print() {
     std::cout << "Heelo!";
@@ -38,10 +39,15 @@ T* filter(T* arr, const size_t SIZE, std::function<bool(T)> func, size_t & resul
     T * result = new T[SIZE];
     resultSize = 0;
     for(size_t i = 0; i < SIZE; i++) {
-        if(func(arr[i])) {
-            result[resultSize] = arr[i];
-            resultSize++;
-        }
+		try {
+			if(func(arr[i])) {
+				result[resultSize] = arr[i];
+				resultSize++;
+			}
+		} catch(...) { // Catch every exception thrown by the lambda
+			delete[] result; // prevent memory leak 
+			throw; // and rethrow exception
+		}
     }
 
     return result;
@@ -49,11 +55,14 @@ T* filter(T* arr, const size_t SIZE, std::function<bool(T)> func, size_t & resul
 
 int main() {
     const size_t SIZE = 5;
-    int arr[SIZE] = {1, 2, 3, 4};
+    int arr[SIZE] = {1, 2, 3, 4, 6};
 
     map<int>(arr, SIZE, [](int x) -> int { return 2 * x; } );
     size_t resultArraySize;
     int * resultArray = 
-    filter<int>(arr, SIZE, [](int number) -> bool {return number % 2 == 0; }, resultArraySize);
-    
+	try {
+		filter<int>(arr, SIZE, [](int number) -> bool { throw 42; }, resultArraySize);
+    } catch(int ex) {
+		// catch exceptions thrown by the lambda
+	}
 }

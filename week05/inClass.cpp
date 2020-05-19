@@ -1,5 +1,7 @@
 #include<iostream>
 #include <cmath>
+#include <stdexcept>
+#include <cassert>
 using std::cin;
 using std::cout;
 /*
@@ -63,6 +65,23 @@ public:
         //}
     }
 };
+/*
+void operator delete[](void * ptr) {
+	// cout << "Freeing memory\n";
+	free(ptr);
+}
+
+void * operator new[](size_t size) {
+	// std::cout << "new array with size: " << size <<std::endl;
+	throw std::bad_alloc();
+	return malloc(size);
+}*/
+		
+
+
+
+
+
 
 class DynArray {
 public:
@@ -100,20 +119,22 @@ public:
         }
         return false;
     }
-x
+
     bool isEmpty() {
         return this->size == 0;
     }
 
-    void deititialize() {
+    void deinitialize() {
         delete[] this->data;
     }
 };
 
 int main() {
-    DynArray array;
-    array.initialize();
-
+	
+    DynArray array; 
+    
+	array.initialize();
+	
     array.addToEnd(12);
 
     for(size_t i = 0; i < array.size; i++) {
@@ -130,6 +151,7 @@ int main() {
 
     array.deinitialize();
     cout << '\n';
+	
 }
 
 
